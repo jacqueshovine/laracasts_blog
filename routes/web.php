@@ -23,7 +23,7 @@ Route::get('posts/{post}', function ($slug) {
 
     if (! file_exists($path)) {
         // dump and die
-        // dd('file does not exist');
+        dd($path);
 
         // Throw 404
         // abort(404);
@@ -38,4 +38,4 @@ Route::get('posts/{post}', function ($slug) {
     return view('post', [
        'post' => $post
     ]);
-});
+})->where('post', '[A-z_\-]+');
