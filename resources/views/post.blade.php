@@ -6,11 +6,7 @@
 
 <body>
     <article>
-        <h1><a href="/post">My first post</a></h1>
-
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quas possimus voluptatibus, aliquam, nesciunt numquam quasi provident at, dignissimos aut quos asperiores quisquam optio autem laboriosam laudantium totam. Itaque, adipisci!
-        </p>
+        <?= $post; ?>
     </article>
 
     <a href="/">Go back</a>
