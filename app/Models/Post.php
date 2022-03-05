@@ -50,28 +50,20 @@ class Post
 
     }
 
-    public static function find($slug) {
-
+    public static function find($slug) 
+    {
         return static::all()->firstWhere('slug', $slug);
+    }
 
-        // if (! file_exists($path = resource_path("posts/{$slug}.html"))) {
-        //     // dump and die
-        //     // dd($path);
+    public static function findOrFail($slug) 
+    {
+        $post = static::find($slug);
 
-        //     // Throw 404
-        //     // abort(404);
+        if (! $post) {
+            throw new ModelNotFoundException();
+        }
 
-        //     // Sends back to home page
-        //     // return redirect('/');
-
-        //     throw new ModelNotFoundException();
-
-        // }
-
-        // Return the post + cache
-        // return cache()->remember("posts.{$slug}", now()->addMinutes(60), function () use($path){
-        //     return file_get_contents($path);
-        // });
+        return $post;
     }
 
 }
