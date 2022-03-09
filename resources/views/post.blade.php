@@ -1,7 +1,7 @@
 <x-layout>
     <article>
         <h1>
-            {{ $post->title }}
+            {!! $post->title !!}
         </h1>
 
         <div>

@@ -5,7 +5,7 @@
                 <a href="/posts/{{ $post->id }}">
                     {{-- PHP syntax <?= $post->title; ?> --}}
 
-                    {{ $post->title }}
+                    {!! $post->title !!}
                 </a>
             </h1>
 
