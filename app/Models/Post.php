@@ -17,4 +17,10 @@ class Post extends Model
     // Allows mass assignment for following keys
     // This is more explicit, and prevents from missing something
     protected $fillable = ['title', 'excerpt', 'body'];
+
+    // This method sets the default key for Route Model binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
