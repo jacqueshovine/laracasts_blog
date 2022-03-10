@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function posts()
+    {
+        // hasOne, hasMany, belongsTo, belongsToMany
+        return $this->hasMany(Post::class);
+    }
 }
