@@ -18,44 +18,56 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        User::truncate();
-        Category::truncate();
-        Post::truncate();
+        // Truncating tables is useful only if we want to do it outside of migrate:fresh (which is already dropping the tables)
+        // User::truncate();
+        // Category::truncate();
+        // Post::truncate();
 
-        $user = User::factory()->create();
-
-        $personal = Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal'
+        $user = User::factory()->create([
+            'name' => 'John Doe'
         ]);
 
-        $work = Category::create([
-            'name' => 'Work',
-            'slug' => 'work'
+        Post::factory(5)->create([
+            // Associate dummy post with already created user
+            'user_id' => $user->id
         ]);
 
-        $family = Category::create([
-            'name' => 'Family',
-            'slug' => 'family'
-        ]);
+        // Code below : Create dummy data without factories
 
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $family->id,
-            'title' => 'My family post',
-            'slug' => 'my-family-post',
-            'excerpt' => 'Lorem ipsum dolor sit amet.',
-            'body' => '<p>Do velit exercitation irure est in commodo consequat quis occaecat mollit commodo sit magna velit. Pariatur pariatur consectetur ut cillum. Do consectetur consequat fugiat enim officia.</p>',
-        ]);
+        // $user = User::factory()->create();
+
+        // $personal = Category::create([
+        //     'name' => 'Personal',
+        //     'slug' => 'personal'
+        // ]);
+
+        // $work = Category::create([
+        //     'name' => 'Work',
+        //     'slug' => 'work'
+        // ]);
+
+        // $family = Category::create([
+        //     'name' => 'Family',
+        //     'slug' => 'family'
+        // ]);
+
+        // Post::create([
+        //     'user_id' => $user->id,
+        //     'category_id' => $family->id,
+        //     'title' => 'My family post',
+        //     'slug' => 'my-family-post',
+        //     'excerpt' => 'Lorem ipsum dolor sit amet.',
+        //     'body' => '<p>Do velit exercitation irure est in commodo consequat quis occaecat mollit commodo sit magna velit. Pariatur pariatur consectetur ut cillum. Do consectetur consequat fugiat enim officia.</p>',
+        // ]);
         
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $work->id,
-            'title' => 'My work post',
-            'slug' => 'my-work-post',
-            'excerpt' => 'Lorem ipsum dolor sit amet.',
-            'body' => '<p>Do velit exercitation irure est in commodo consequat quis occaecat mollit commodo sit magna velit. Pariatur pariatur consectetur ut cillum. Do consectetur consequat fugiat enim officia.</p>',
-        ]);
+        // Post::create([
+        //     'user_id' => $user->id,
+        //     'category_id' => $work->id,
+        //     'title' => 'My work post',
+        //     'slug' => 'my-work-post',
+        //     'excerpt' => 'Lorem ipsum dolor sit amet.',
+        //     'body' => '<p>Do velit exercitation irure est in commodo consequat quis occaecat mollit commodo sit magna velit. Pariatur pariatur consectetur ut cillum. Do consectetur consequat fugiat enim officia.</p>',
+        // ]);
 
     }
 }
