@@ -14,11 +14,25 @@
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
         <!--  Category -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
+
+
+            <div x-data="{ show: false }"> 
+                <button>Categories</button>
+
+                <div x-show="show">
+                    <a href="#">Link</a>
+                    <a href="#">Link</a>
+                    <a href="#">Link</a>
+                </div>
+            </div>
+
+{{--             
             <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
                 <option value="category" disabled selected>Category
                 </option>
-                <option value="personal">Personal</option>
-                <option value="business">Business</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                @endforeach
             </select>
 
             <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22"
@@ -29,7 +43,7 @@
                     <path fill="#222"
                           d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z"></path>
                 </g>
-            </svg>
+            </svg> --}}
         </div>
 
         <!-- Other Filters -->
