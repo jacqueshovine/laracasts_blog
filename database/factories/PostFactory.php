@@ -22,7 +22,8 @@ class PostFactory extends Factory
 
             // Laravel will automatically create the user, grab the id and assign it.
             'user_id' => User::factory(),
-            'category_id' => Category::factory(),
+            // 'category_id' => Category::factory(), // Generates new categories
+            'category_id' => $this->faker->numberBetween(1, Category::all()->count()),
 
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),

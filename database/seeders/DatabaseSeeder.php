@@ -23,14 +23,16 @@ class DatabaseSeeder extends Seeder
         // Category::truncate();
         // Post::truncate();
 
-        $user = User::factory()->create([
-            'name' => 'John Doe'
-        ]);
+        Post::factory(10)->create();
 
-        Post::factory(5)->create([
-            // Associate dummy post with already created user
-            'user_id' => $user->id
-        ]);
+        // $user = User::factory()->create([
+        //     'name' => 'John Doe'
+        // ]);
+
+        // Post::factory(10)->create([
+        //     // Associate dummy post with already created user
+        //     'user_id' => $user->id
+        // ]);
 
         // Code below : Create dummy data without factories
 
