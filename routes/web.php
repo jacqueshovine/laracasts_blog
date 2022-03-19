@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -20,55 +21,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-
-    $posts = Post::latest();
-
-    if (request('search')) {
-        $posts->where('title', 'like', '%' . request('search') . '%')
-        ->orWhere('body', 'like', '%' . request('search') . '%');
-    }
-
-
-
-    // This will show the Sql query in app/storage/logs/laravel.log file
-    // Alternatively we can use clockwork browser extension
-    // 
-    // DB::listen(function ($query) {
-    //     logger($query->sql, $query->bindings);
-    // });
-
-    // Return all posts without collect method
-
-    // $files = File::files(resource_path("posts"));
-
-    // $posts = array_map(function ($file) {
-
-    //     $document = YamlFrontMatter::parseFile($file);
-
-    //     return new Post(
-    //         $document->title,
-    //         $document->excerpt,
-    //         $document->date,
-    //         $document->body,
-    //         $document->slug,
-    //     );
-    // }, $files);
-
-    return view('posts', [
-        'posts' => $posts->get(),
-        'categories' => Category::all(),
-    ]);
-
-})->name('home');
-
-Route::get('posts/{post}', function (Post $post) {
-
-    return view('post', [
-        'post' => $post
-    ]);
-    
-});
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post}', [PostController::class, 'show']);
 
 // The syntax below would be used if we had not defined getRouteKeyName() function in the Post Model
 // Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
