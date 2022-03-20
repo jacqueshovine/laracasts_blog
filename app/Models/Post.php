@@ -28,9 +28,24 @@ class Post extends Model
     {
         if ($filters['search'] ?? false) {
             $query
-            ->where('title', 'like', '%' . request('search') . '%')
-            ->orWhere('body', 'like', '%' . request('search') . '%');
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
         }
+
+        /*
+         ** $query->when = if
+         ** in plain SQL : 
+
+        SELECT * FROM posts 
+        WHERE EXISTS 
+            (SELECT * FROM categories WHERE posts.category_id = categories.id AND slug = 'slug')
+
+        */
+        $query->when($filters['category'] ?? false, fn($query, $category) =>
+            $query->whereHas('category', fn ($query) =>
+                $query->where('slug', $category)
+            )
+        );
     }
 
     public function category()

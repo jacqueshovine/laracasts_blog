@@ -36,7 +36,7 @@ class PostController extends Controller
         // }, $files);
     
         return view('posts', [
-            'posts' => Post::latest()->filter(request(['search']))->get(), // Will use the search function is a search term is filled (using the scopeFilter method from Model), return all posts if not.
+            'posts' => Post::latest()->filter(request(['search', 'category']))->get(), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
             'categories' => Category::all(),
         ]);
     }
