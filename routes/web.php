@@ -33,14 +33,16 @@ Route::get('posts/{post}', [PostController::class, 'show']);
     
 // });
 
-Route::get('categories/{category}', function (Category $category) {
-    return view('posts', [
-        // load() solves the N+1 problem.
-        'posts' => $category->posts->load(['category', 'author']),
-        'currentCategory' => $category,
-        'categories' => Category::all(),
-    ]);
-})->name('category');
+// Old way of displaying posts per categories (with dedicated category page).
+
+// Route::get('categories/{category}', function (Category $category) {
+//     return view('posts', [
+//         // load() solves the N+1 problem.
+//         'posts' => $category->posts->load(['category', 'author']),
+//         'currentCategory' => $category,
+//         'categories' => Category::all(),
+//     ]);
+// })->name('category');
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [

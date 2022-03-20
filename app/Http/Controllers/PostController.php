@@ -38,6 +38,7 @@ class PostController extends Controller
         return view('posts', [
             'posts' => Post::latest()->filter(request(['search', 'category']))->get(), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
             'categories' => Category::all(),
+            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
     }
 
