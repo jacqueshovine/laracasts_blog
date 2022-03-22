@@ -35,16 +35,14 @@ class PostController extends Controller
         //     );
         // }, $files);
     
-        return view('posts', [
+        return view('posts.index', [
             'posts' => Post::latest()->filter(request(['search', 'category']))->get(), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
-            'categories' => Category::all(),
-            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
     }
 
     public function show(Post $post)
     {
-        return view('post', [
+        return view('post.show', [
             'post' => $post
         ]);
     }
