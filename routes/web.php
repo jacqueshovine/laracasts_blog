@@ -44,8 +44,11 @@ Route::get('posts/{post}', [PostController::class, 'show']);
 //     ]);
 // })->name('category');
 
-Route::get('authors/{author:username}', function (User $author) {
-    return view('posts', [
-        'posts' => $author->posts->load(['category', 'author']),
-    ]);
-});
+
+// Not needed anymore : we now filter through the controller using parameters
+
+// Route::get('authors/{author:username}', function (User $author) {
+//     return view('posts.index', [
+//         'posts' => $author->posts->load(['category', 'author']),
+//     ]);
+// });
