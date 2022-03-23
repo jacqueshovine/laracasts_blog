@@ -39,7 +39,7 @@ class PostController extends Controller
         return view('posts.index', [
             'posts' => Post::latest()->filter(
                 request(['search', 'category', 'author'])
-            )->paginate(6), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
+            )->paginate(6)->withQueryString(), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
         ]);
     }
 
