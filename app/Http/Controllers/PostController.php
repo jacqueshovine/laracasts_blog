@@ -34,9 +34,12 @@ class PostController extends Controller
         //         $document->slug,
         //     );
         // }, $files);
-    
+
+
         return view('posts.index', [
-            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->get(), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
+            'posts' => Post::latest()->filter(
+                request(['search', 'category', 'author'])
+            )->paginate(6), // Will use the search function if a search term is filled (using the scopeFilter method from Model), return all posts if not.
         ]);
     }
 
