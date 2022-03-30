@@ -46,6 +46,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    /*
+     * Using Eloquent mutator
+     * Transforms an attribute value when it is set
+     * https://laravel.com/docs/9.x/eloquent-mutators#defining-a-mutator 
+     */
+    public function setPasswordAttribute($password)
+    {
+        // $this->attributes['password'] = bcrypt($password);
+        $this->attributes['password'] = 'oof';
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
