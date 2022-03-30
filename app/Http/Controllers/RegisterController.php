@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -16,11 +17,18 @@ class RegisterController extends Controller
     {
         // create user
 
-        request()->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+        // Server side validations
+        // When calling request->validate, Laravel will check the rules and redirect to the form if it failed.
+        $attributes = request()->validate([
+            'name' => 'required|min:3',
+            'username' => 'required|max:255|min:3',
+            'email' => 'required|email|max:255',
+            // 'password' => 'required|min:7|max:255',
+            'password' => ['required', 'min:7', 'max:255'], // Can also be written in arrays
         ]);
+
+        User::create($attributes);
+
+        return redirect('/');
     }
 }
