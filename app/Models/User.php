@@ -46,6 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /*
+     * Using Eloquent accessor
+     */
+    public function getUserNameAttribute($username)
+    {
+        return ucwords($username);
+    }
+
 
     /*
      * Using Eloquent mutator
@@ -54,8 +62,7 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($password)
     {
-        // $this->attributes['password'] = bcrypt($password);
-        $this->attributes['password'] = 'oof';
+        $this->attributes['password'] = bcrypt($password);
     }
 
     public function posts()

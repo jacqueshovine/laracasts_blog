@@ -12,12 +12,19 @@
                         Name
                     </label>
 
+                    <!-- Setting the value as {{ old('name') }} prevents the need to refill every field when an error happens. -->
                     <input class="border border-gray-400 p-2 w-full"
                            type="text"
                            name="name"
                            id="name"
+                           value="{{ old('name') }}"
                            required
                     >
+
+                    @error('name')
+                    <!-- $message contains the validation error message -->
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -31,8 +38,14 @@
                            type="text"
                            name="username"
                            id="username"
+                           value="{{ old('username') }}"
                            required
                     >
+
+                    @error('username')
+                    <!-- $message contains the validation error message -->
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -46,8 +59,14 @@
                            type="email"
                            name="email"
                            id="email"
+                           value="{{ old('email') }}"
                            required
                     >
+
+                    @error('email')
+                    <!-- $message contains the validation error message -->
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -63,6 +82,11 @@
                            id="password"
                            required
                     >
+
+                    @error('password')
+                    <!-- $message contains the validation error message -->
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -73,6 +97,14 @@
                     </button>
                 </div>
 
+                <!-- If we want to display all errors at one place in a list -->
+                {{-- @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-500 text-xs">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif --}}
             </form>
         </main>
     </section>
