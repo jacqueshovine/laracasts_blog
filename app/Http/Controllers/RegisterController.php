@@ -32,7 +32,10 @@ class RegisterController extends Controller
         // Encrypting password without mutator
         // $attributes['password'] = bcrypt($attributes['password']);
 
-        User::create($attributes);
+        $user = User::create($attributes);
+
+        // Log the user in directly after creation
+        auth()->login($user);
 
 
         // Store a flash message to be displayed in the session. We can directly add that after the redirect method (see below)

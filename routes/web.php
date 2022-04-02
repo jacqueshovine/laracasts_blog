@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -25,8 +26,12 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post}', [PostController::class, 'show']);
 
-Route::get('register', [RegisterController::class, 'create']);
-Route::post('register', [RegisterController::class, 'store']);
+// Middleware : Piece of logic that will be run when a new request comes in (will inspect requests going through the core of the app, and perform actions)
+// Laravel has a middleware called guest. Middlewares can be found in app/Http/Middleware
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::post('logout', [SessionsController::class, 'destroy']);
 
 // The syntax below would be used if we had not defined getRouteKeyName() function in the Post Model
 // Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
