@@ -21,18 +21,18 @@ class SessionsController extends Controller
         ]);
 
         // attempt to authenticate and log in the user based on the provided credentials
-        if (auth()->attempt($attributes)) {
+        if (! auth()->attempt($attributes)) {
 
-            // Generate new session (with new id) to avoid session fixation attacks
-            session()->regenerate();
-            // redirect with a success flash message
-            return redirect('/')->with('success', 'Welcome back!');
-        }
-
-        // auth failed
-        return back()
+            // auth failed
+            return back()
             ->withInput()
             ->withErrors(['email' => 'Your provided credentials could not be verified.']);
+        }
+
+        // Generate new session (with new id) to avoid session fixation attacks
+        session()->regenerate();
+        // redirect with a success flash message
+        return redirect('/')->with('success', 'Welcome back!');
     }
 
     public function destroy()
