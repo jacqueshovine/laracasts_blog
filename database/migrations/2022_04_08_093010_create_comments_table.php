@@ -15,7 +15,19 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+
+            // Foreign key
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            // Another way of declaring the foreign key
+            // $table->foreign('post_id')->references('id')->on('posts')->cascadeOnDelete();
+
+            $table->text('body');
             $table->timestamps();
+
+
+            
         });
     }
 
