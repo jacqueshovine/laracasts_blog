@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -25,6 +27,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post}', [PostController::class, 'show']);
+Route::post('posts/{post}/comments', [PostCommentsController::class, 'store']);
 
 // Middleware : Piece of logic that will be run when a new request comes in (will inspect requests going through the core of the app, and perform actions)
 // Laravel has a middleware called guest. Middlewares can be found in app/Http/Middleware

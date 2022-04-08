@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function post()
     {
         // Here, Laravel will assume that the foreign key is post_id (by default)
