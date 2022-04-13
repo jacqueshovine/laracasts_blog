@@ -44,6 +44,7 @@ Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
 // The syntax below would be used if we had not defined getRouteKeyName() function in the Post Model
 // Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
 
