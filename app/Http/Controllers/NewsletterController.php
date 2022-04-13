@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\MailChimpNewsletter;
+use App\Services\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class NewsletterController extends Controller
 {
     // A new Newsletter will be instantiated by laravel
-    public function __invoke(MailChimpNewsletter $newsletter)
+    public function __invoke(Newsletter $newsletter)
     {
         request()->validate(['email' => 'required|email']);
 
