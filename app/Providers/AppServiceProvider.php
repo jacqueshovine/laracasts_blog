@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\Newsletter;
+use App\Services\MailChimpNewsletter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use MailchimpMarketing\ApiClient;
@@ -17,14 +17,14 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // Toychest
-        app()->bind(Newsletter::class, function () {
+        app()->bind(MailChimpNewsletter::class, function () {
 
             $client = (new ApiClient)->setConfig([
                 'apiKey' => config('services.mailchimp.key'),
                 'server' => 'us14',
             ]);
 
-            return new Newsletter($client);
+            return new MailChimpNewsletter($client);
         });
     }
 

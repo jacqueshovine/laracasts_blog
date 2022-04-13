@@ -9,7 +9,7 @@ use App\Http\Controllers\SessionsController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use App\Services\Newsletter;
+use App\Services\MailChimpNewsletter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;

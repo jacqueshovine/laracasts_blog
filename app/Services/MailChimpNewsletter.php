@@ -4,7 +4,7 @@ namespace App\Services;
 use MailchimpMarketing\ApiClient;
 
 
-class Newsletter
+class MailChimpNewsletter
 {
 
     public function __construct(protected ApiClient $client)
@@ -17,7 +17,7 @@ class Newsletter
         
         $list ??= config('services.mailchimp.lists.subscribers');
 
-        // The client has been set in the AppServiceProvider and bound to the Newsletter object
+        // The client has been registered in the AppServiceProvider and bound to the MailChimpNewsletter object
         return $this->client->lists->addListMember(config('services.mailchimp.lists.subscribers'), [
             'email_address' => $email,
             'status' => 'subscribed',
