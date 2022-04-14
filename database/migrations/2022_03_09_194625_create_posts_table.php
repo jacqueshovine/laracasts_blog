@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('title');
             $table->string('thumbnail')->nullable(); // not the image itself but a path to it
+            $table->string('thumbnail_alt')->nullable();
             $table->text('excerpt');
             $table->text('body');
             $table->timestamps();

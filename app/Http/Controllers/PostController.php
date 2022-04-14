@@ -63,10 +63,11 @@ class PostController extends Controller
         // dd(request()->file('thumbnail'));
 
         $attributes = request()->validate([
-            'title' => 'required',
+            'title' => 'required|min:3|max:50',
             'thumbnail' => 'required|image',
+            'thumbnail_alt' => 'min:3|max:255',
             'slug' => ['required', Rule::unique('posts', 'slug')],
-            'excerpt' => 'required',
+            'excerpt' => 'required|min:3|max:255',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
         ]);

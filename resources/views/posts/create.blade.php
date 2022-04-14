@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="py-8 max-w-sm mx-auto">
+    <section class="py-8 max-w-md mx-auto">
         <h1 class="text-lg font-bold mb-4">
             Publish New Post
         </h1>
@@ -63,6 +63,29 @@
                            id="thumbnail"
                            value="{{ old('thumbnail') }}"
                            required
+                    >
+    
+                    @error('thumbnail')
+                    <!-- $message contains the validation error message -->
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+                <div class="mb-6">
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                           for="thumbnail_alt"
+                    >
+                        Thumbnail description
+                    </label>
+    
+                    <input class="border border-gray-400 p-2 w-full"
+                           type="text"
+                           name="thumbnail_alt"
+                           id="thumbnail_alt"
+                           value="{{ old('thumbnail_alt') }}"
+                           required
+                           placeholder="A short description for the thumbnail image"
                     >
     
                     @error('slug')
