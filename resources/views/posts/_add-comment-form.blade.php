@@ -22,7 +22,7 @@
             </div>
 
             <div class="flex justify-end mt-6 border-t border-gray-200 pt-6">
-                <x-submit-button>Post</x-submit-button>
+                <x-form.submit-button>Post</x-form.submit-button>
             </div>
         </form>
     </x-panel>

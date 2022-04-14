@@ -89,7 +89,7 @@
                     @enderror
                 </div>
 
-                <x-submit-button>Submit</x-submit-button>
+                <x-form.submit-button>Submit</x-form.submit-button>
 
                 <!-- If we want to display all errors at one place in a list -->
                 {{-- @if ($errors->any())
