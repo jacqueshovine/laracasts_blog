@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    // Has to be modified in the .env file
+    'default' => env('FILESYSTEM_DISK'),
+    // 'default' => env('FILESYSTEM_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
