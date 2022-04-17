@@ -1,37 +1,31 @@
 <x-layout>
-    <section class="py-8 max-w-md mx-auto">
-        <h1 class="text-lg font-bold mb-4">
-            Publish New Post
-        </h1>
-        <x-panel>
-            <!-- enctype needs to be specified if we upload files through the form -->
-            <form method="POST" action="/admin/posts" enctype="multipart/form-data">
-                @csrf
-    
-                <x-form.input name="title"/>
-                <x-form.input name="slug"/>
-                <x-form.input name="thumbnail" type="file"/>
-                <x-form.input name="thumbnail_alt" placeholder="A short description for the thumbnail image"/>
-                <x-form.textarea name="excerpt"/>
-                <x-form.textarea name="body"/>
+    <x-setting heading="Publish New Post">
+        <!-- enctype needs to be specified if we upload files through the form -->
+        <form method="POST" action="/admin/posts" enctype="multipart/form-data">
+            @csrf
 
-                <x-form.field>
-                    <x-form.label name="category"/>
+            <x-form.input name="title"/>
+            <x-form.input name="slug"/>
+            <x-form.input name="thumbnail" type="file"/>
+            <x-form.input name="thumbnail_alt" placeholder="A short description for the thumbnail image"/>
+            <x-form.textarea name="excerpt"/>
+            <x-form.textarea name="body"/>
 
-                    <select name="category_id" id="category_id">
-                        @foreach (\App\Models\Category::all() as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : ''}}>{{ ucwords($category->name) }}</option>
-                        @endforeach
+            <x-form.field>
+                <x-form.label name="category"/>
 
-                    </select>
+                <select name="category_id" id="category_id">
+                    @foreach (\App\Models\Category::all() as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : ''}}>{{ ucwords($category->name) }}</option>
+                    @endforeach
 
-                    <x-form.error name="category"/>
-                </x-form.field>
+                </select>
 
-                <x-form.submit-button>Publish</x-form.submit-button>
-                </div>
-            </form>
-        </x-panel>
+                <x-form.error name="category"/>
+            </x-form.field>
 
-    </section>
+            <x-form.submit-button>Publish</x-form.submit-button>
+            </div>
+        </form>
+    </x-setting>
 </x-layout>
