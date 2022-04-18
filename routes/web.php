@@ -52,6 +52,7 @@ Route::post('admin/posts/', [AdminPostController::class, 'store'])->middleware('
 Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
 Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
 Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('admin');
+Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
 
 // The syntax below would be used if we had not defined getRouteKeyName() function in the Post Model
 // Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
