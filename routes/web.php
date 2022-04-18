@@ -47,12 +47,21 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 
 
 // Admin
-Route::get('admin/posts/create', [AdminPostController::class, 'create'])->middleware('admin');
-Route::post('admin/posts/', [AdminPostController::class, 'store'])->middleware('admin');
-Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
-Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
-Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('admin');
-Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
+// All these routes use the same middleware
+Route::middleware('can:admin')->group(function () {
+
+    // There are 7 actions for a resourceful controller. We can reference them all with the route resource helper.
+    // In this case, we had no show action, so we exclude it.
+    Route::resource('admin/posts', AdminPostController::class)->except('show');
+
+    // Route::get('admin/posts/create', [AdminPostController::class, 'create']);
+    // Route::post('admin/posts/', [AdminPostController::class, 'store']);
+    // Route::get('admin/posts', [AdminPostController::class, 'index']);
+    // Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit']);
+    // Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
+    // Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);
+});
+
 
 // The syntax below would be used if we had not defined getRouteKeyName() function in the Post Model
 // Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
