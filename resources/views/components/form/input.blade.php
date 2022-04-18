@@ -1,4 +1,10 @@
-@props(['name', 'type' => 'text', 'placeholder' => '', 'autocomplete' => ''])
+@props([
+    'name', 
+    'type' => 'text', 
+    'placeholder' => '', 
+    'autocomplete' => '',
+    'value' => old($name),
+])
 <x-form.field>
     <x-form.label name="{{ $name }}"/>
 
@@ -6,7 +12,7 @@
            type="{{ $type }}"
            name="{{ $name }}"
            id="{{ $name }}"
-           value="{{ old('$name') }}"
+           value="{{ $value }}"
            placeholder="{{ $placeholder }}"
            required
            autocomplete="{{ $autocomplete }}""

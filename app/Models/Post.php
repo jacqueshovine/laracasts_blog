@@ -19,10 +19,11 @@ class Post extends Model
     // protected $fillable = ['title', 'excerpt', 'body'];
 
     // This method sets the default key for Route Model binding
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // Commented out because we are now editing posts based on their ID in the URI, but still showing posts based on their slug.
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     public function scopeFilter($query, array $filters) // Post::newQuery()->filter()
     {
