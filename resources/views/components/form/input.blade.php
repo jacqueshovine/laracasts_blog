@@ -14,7 +14,6 @@
            id="{{ $name }}"
            value="{{ $value }}"
            placeholder="{{ $placeholder }}"
-           required
            autocomplete="{{ $autocomplete }}""
     >
 
